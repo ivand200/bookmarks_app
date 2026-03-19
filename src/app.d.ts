@@ -1,6 +1,6 @@
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
-import type { LogtoClient, UserInfoResponse } from '@logto/sveltekit';
+import type { LogtoClient, UserInfoResponse } from "@logto/sveltekit";
 
 declare global {
 	namespace App {
@@ -14,5 +14,3 @@ declare global {
 		// interface Platform {}
 	}
 }
-
-export { };

@@ -1,0 +1,2 @@
+-- Intentionally empty for now.
+-- Seed data can be added here later if local development needs sample bookmarks.

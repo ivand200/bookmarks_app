@@ -9,18 +9,37 @@
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "biome check .",
+		"lint:fix": "biome check . --write",
+		"format": "biome format . --write",
+		"verify": "bun run format && bun run lint && bun run check",
+		"supabase": "supabase",
+		"supabase:init": "supabase init",
+		"supabase:link": "supabase link --project-ref xnnuvdhakssbljtqyvzu",
+		"supabase:migration:new": "supabase migration new",
+		"supabase:db:push": "supabase db push",
+		"supabase:types": "supabase gen types typescript --linked --schema public > src/lib/types/supabase.ts"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "2.4.7",
 		"@sveltejs/adapter-auto": "^7.0.0",
 		"@sveltejs/kit": "^2.50.2",
 		"@sveltejs/vite-plugin-svelte": "^6.2.4",
+		"autoprefixer": "^10.4.27",
+		"postcss": "^8.5.8",
+		"supabase": "^2.78.1",
 		"svelte": "^5.51.0",
 		"svelte-check": "^4.4.2",
+		"tailwindcss": "^4.2.1",
 		"typescript": "^5.9.3",
 		"vite": "^7.3.1"
 	},
 	"dependencies": {
-		"@logto/sveltekit": "^0.3.22"
+		"@logto/sveltekit": "^0.3.22",
+		"@supabase/supabase-js": "^2.99.1",
+		"@tailwindcss/vite": "^4.2.1",
+		"daisyui": "^5.5.19",
+		"zod": "^4.3.6"
 	}
 }

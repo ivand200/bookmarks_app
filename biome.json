@@ -1,0 +1,14 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.4.7/schema.json",
+	"files": {
+		"includes": ["**", "!.svelte-kit", "!node_modules"]
+	},
+	"css": {
+		"parser": {
+			"tailwindDirectives": true
+		}
+	},
+	"html": {
+		"experimentalFullSupportEnabled": true
+	}
+}
