@@ -17,14 +17,17 @@ const optionalTextField = formString(z.string().trim().optional()).transform(
 	(value) => (value && value.length > 0 ? value : null),
 );
 
+const httpUrlField = formString(
+	z
+		.url({
+			protocol: /^https?$/,
+			hostname: z.regexes.domain,
+		})
+		.min(1, "URL is required."),
+).transform((value) => new URL(value).toString());
+
 export const createBookmarkSchema = z.object({
-	url: formString(
-		z
-			.string()
-			.trim()
-			.min(1, "URL is required.")
-			.url("Please enter a valid URL."),
-	).transform((value) => new URL(value).toString()),
+	url: httpUrlField,
 	title: optionalTextField,
 	description: optionalTextField,
 });

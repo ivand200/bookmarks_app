@@ -120,12 +120,12 @@
 			</div>
 
 			<div class="navbar-end gap-2">
-				<button
-					type="button"
-					class="btn btn-ghost rounded-full border border-base-300/70 bg-base-100/70 px-3 text-sm shadow-sm shadow-base-content/5"
-					aria-label={isDarkTheme ? "Switch to light theme" : "Switch to dark theme"}
-					onclick={() => {
-						isDarkTheme = !isDarkTheme;
+					<button
+						type="button"
+						class="archive-toolbar-button"
+						aria-label={isDarkTheme ? "Switch to light theme" : "Switch to dark theme"}
+						onclick={() => {
+							isDarkTheme = !isDarkTheme;
 
 						if (!browser) {
 							return;
@@ -142,12 +142,12 @@
 				</button>
 
 				<div class="dropdown dropdown-end">
-					<button
-						type="button"
-						tabindex="0"
-						class="btn btn-ghost h-auto rounded-full border border-base-300/70 bg-base-100/70 px-2 py-1 shadow-sm shadow-base-content/5"
-						aria-label="Open account menu"
-					>
+						<button
+							type="button"
+							tabindex="0"
+							class="archive-avatar-button"
+							aria-label="Open account menu"
+						>
 						<div class="avatar avatar-placeholder">
 							<div class="w-11 rounded-full bg-neutral text-neutral-content">
 								<span class="text-sm font-semibold">{getInitials()}</span>
@@ -155,11 +155,11 @@
 						</div>
 					</button>
 
-					<div class="dropdown-content z-30 mt-3 w-72 rounded-3xl border border-base-300/80 bg-base-100 p-2 shadow-xl shadow-base-content/10">
-						<div class="rounded-[1.5rem] bg-base-200/80 px-4 py-3">
-							<p class="archive-kicker">Signed in</p>
-							<p class="mt-2 break-all text-sm font-medium text-base-content">
-								{data.user?.email ?? data.user?.sub}
+						<div class="archive-dropdown-panel dropdown-content z-30 mt-3 w-72">
+							<div class="archive-dropdown-inset">
+								<p class="archive-kicker">Signed in</p>
+								<p class="mt-2 break-all text-sm font-medium text-base-content">
+									{data.user?.email ?? data.user?.sub}
 							</p>
 						</div>
 
@@ -230,13 +230,13 @@
 								{/if}
 							</label>
 
-							<div class="pt-0 lg:pt-9">
-								<button
-									type="submit"
-									class="btn btn-primary btn-lg w-full rounded-[1.2rem] px-8 shadow-lg shadow-primary/15 sm:w-auto lg:min-w-32"
-								>
-									Add
-								</button>
+								<div class="pt-0 lg:pt-9">
+									<button
+										type="submit"
+										class="archive-primary-action btn-lg w-full sm:w-auto lg:min-w-32"
+									>
+										Add
+									</button>
 							</div>
 						</div>
 
@@ -263,21 +263,21 @@
 						</div>
 					{/if}
 
-					{#if data.bookmarks.length === 0}
-						<div class="grid min-h-[24rem] place-items-center rounded-[1.8rem] border border-dashed border-base-300 bg-base-200/55 p-8 text-center">
-							<div class="max-w-sm space-y-4">
-								<div class="mx-auto grid h-16 w-16 place-items-center rounded-3xl bg-primary/12 text-primary">
-									<span class="text-2xl">+</span>
-								</div>
+						{#if data.bookmarks.length === 0}
+							<div class="archive-empty-state">
+								<div class="max-w-sm space-y-4">
+									<div class="archive-empty-state-icon">
+										<span class="text-2xl">+</span>
+									</div>
 								<div>
 									<h3 class="text-2xl font-semibold text-base-content">No bookmarks yet</h3>
 									<p class="mt-2 leading-7 text-base-content/70">
 										Add your first link above to start building a private reference shelf you can actually find later.
 									</p>
 								</div>
-								<a href="#bookmark-form" class="btn btn-primary rounded-2xl px-8">Add bookmark</a>
+									<a href="#bookmark-form" class="archive-primary-action rounded-2xl">Add bookmark</a>
+								</div>
 							</div>
-						</div>
 					{:else}
 						<div class="hidden overflow-hidden rounded-[1.8rem] border border-base-300 lg:block">
 							<div class="overflow-x-auto">

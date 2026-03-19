@@ -146,6 +146,34 @@
 		@apply badge rounded-full border-base-300/70 bg-base-100/70 px-3 py-3 text-base-content/70;
 	}
 
+	.archive-toolbar-button {
+		@apply btn btn-ghost rounded-full border border-base-300/70 bg-base-100/70 px-3 text-sm shadow-sm shadow-base-content/5;
+	}
+
+	.archive-avatar-button {
+		@apply btn btn-ghost h-auto rounded-full border border-base-300/70 bg-base-100/70 px-2 py-1 shadow-sm shadow-base-content/5;
+	}
+
+	.archive-dropdown-panel {
+		@apply rounded-3xl border border-base-300/80 bg-base-100 p-2 shadow-xl shadow-base-content/10;
+	}
+
+	.archive-dropdown-inset {
+		@apply rounded-[1.5rem] bg-base-200/80 px-4 py-3;
+	}
+
+	.archive-primary-action {
+		@apply btn btn-primary rounded-[1.2rem] px-8 shadow-lg shadow-primary/15;
+	}
+
+	.archive-empty-state {
+		@apply grid min-h-[24rem] place-items-center rounded-[1.8rem] border border-dashed border-base-300 bg-base-200/55 p-8 text-center;
+	}
+
+	.archive-empty-state-icon {
+		@apply mx-auto grid h-16 w-16 place-items-center rounded-3xl bg-primary/12 text-primary;
+	}
+
 	.archive-table tbody tr {
 		@apply transition-colors duration-200;
 	}

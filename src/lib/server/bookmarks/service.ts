@@ -7,6 +7,28 @@ import { BookmarkNotFoundError, BookmarkValidationError } from "./errors";
 import type { BookmarkRepository } from "./repository";
 import { createBookmarkRepository } from "./repository";
 
+function normalizeHttpUrl(value: string) {
+	const normalizedValue = requireNonEmpty(value, "URL");
+
+	try {
+		const url = new URL(normalizedValue);
+
+		if (url.protocol !== "http:" && url.protocol !== "https:") {
+			throw new BookmarkValidationError("Please enter a valid http(s) URL.");
+		}
+
+		return url.toString();
+	} catch (error) {
+		if (error instanceof BookmarkValidationError) {
+			throw error;
+		}
+
+		throw new BookmarkValidationError("Please enter a valid http(s) URL.", {
+			cause: error,
+		});
+	}
+}
+
 function requireNonEmpty(value: string, fieldName: string) {
 	const normalizedValue = value.trim();
 
@@ -44,7 +66,7 @@ export function createBookmarkService(
 		async createBookmark(input) {
 			return repository.create({
 				userId: requireNonEmpty(input.userId, "User ID"),
-				url: requireNonEmpty(input.url, "URL"),
+				url: normalizeHttpUrl(input.url),
 				title: normalizeOptionalValue(input.title),
 				description: normalizeOptionalValue(input.description),
 			});
