@@ -45,6 +45,8 @@ jobs:
   #     name: staging
   #   env:
   #     RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+  #     RAILWAY_PROJECT_ID: ${{ vars.RAILWAY_PROJECT_ID }}
+  #     RAILWAY_ENVIRONMENT_NAME: ${{ vars.RAILWAY_ENVIRONMENT_NAME }}
   #     RAILWAY_SERVICE_NAME: ${{ vars.RAILWAY_SERVICE_NAME }}
   #
   #   steps:
@@ -62,10 +64,12 @@ jobs:
   #     - name: Validate Railway deploy inputs
   #       run: |
   #         test -n "$RAILWAY_API_TOKEN" || { echo "Missing RAILWAY_API_TOKEN"; exit 1; }
+  #         test -n "$RAILWAY_PROJECT_ID" || { echo "Missing RAILWAY_PROJECT_ID"; exit 1; }
+  #         test -n "$RAILWAY_ENVIRONMENT_NAME" || { echo "Missing RAILWAY_ENVIRONMENT_NAME"; exit 1; }
   #         test -n "$RAILWAY_SERVICE_NAME" || { echo "Missing RAILWAY_SERVICE_NAME"; exit 1; }
   #
   #     - name: Deploy to Railway staging
-  #       run: railway up --ci --service "$RAILWAY_SERVICE_NAME"
+  #       run: railway up --ci --service "$RAILWAY_SERVICE_NAME" --environment "$RAILWAY_ENVIRONMENT_NAME" --project "$RAILWAY_PROJECT_ID"
 
   deploy-production:
     name: Deploy Production
@@ -76,6 +80,8 @@ jobs:
       name: production
     env:
       RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+      RAILWAY_PROJECT_ID: ${{ vars.RAILWAY_PROJECT_ID }}
+      RAILWAY_ENVIRONMENT_NAME: ${{ vars.RAILWAY_ENVIRONMENT_NAME }}
       RAILWAY_SERVICE_NAME: ${{ vars.RAILWAY_SERVICE_NAME }}
 
     steps:
@@ -93,7 +99,9 @@ jobs:
       - name: Validate Railway deploy inputs
         run: |
           test -n "$RAILWAY_API_TOKEN" || { echo "Missing RAILWAY_API_TOKEN"; exit 1; }
+          test -n "$RAILWAY_PROJECT_ID" || { echo "Missing RAILWAY_PROJECT_ID"; exit 1; }
+          test -n "$RAILWAY_ENVIRONMENT_NAME" || { echo "Missing RAILWAY_ENVIRONMENT_NAME"; exit 1; }
           test -n "$RAILWAY_SERVICE_NAME" || { echo "Missing RAILWAY_SERVICE_NAME"; exit 1; }
 
       - name: Deploy to Railway production
-        run: railway up --ci --service "$RAILWAY_SERVICE_NAME"
+        run: railway up --ci --service "$RAILWAY_SERVICE_NAME" --environment "$RAILWAY_ENVIRONMENT_NAME" --project "$RAILWAY_PROJECT_ID"
