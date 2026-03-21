@@ -35,11 +35,19 @@ export type BookmarkRepository = {
 };
 
 export function createBookmarkRepository(
-	supabase: SupabaseClient = getSupabaseServerClient(),
+	supabase?: SupabaseClient,
 ): BookmarkRepository {
+	function getSupabase() {
+		if (!supabase) {
+			supabase = getSupabaseServerClient();
+		}
+
+		return supabase;
+	}
+
 	return {
 		async listByUserId(userId) {
-			const { data, error } = await supabase
+			const { data, error } = await getSupabase()
 				.from("bookmarks")
 				.select(BOOKMARK_COLUMNS)
 				.eq("user_id", userId)
@@ -55,7 +63,7 @@ export function createBookmarkRepository(
 		},
 
 		async create(input) {
-			const { data, error } = await supabase
+			const { data, error } = await getSupabase()
 				.from("bookmarks")
 				.insert({
 					user_id: input.userId,
@@ -76,7 +84,7 @@ export function createBookmarkRepository(
 		},
 
 		async deleteByIdAndUserId(bookmarkId, userId) {
-			const { data, error } = await supabase
+			const { data, error } = await getSupabase()
 				.from("bookmarks")
 				.delete()
 				.eq("id", bookmarkId)
