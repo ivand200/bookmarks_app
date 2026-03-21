@@ -33,33 +33,39 @@ jobs:
       - name: Run CI verification
         run: bun run verify:ci
 
-  deploy-staging:
-    name: Deploy Staging
-    runs-on: ubuntu-latest
-    needs: verify
-    if: github.event_name == 'push' && github.ref == 'refs/heads/test'
-    environment:
-      name: staging
-    env:
-      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-      RAILWAY_PROJECT_ID: ${{ vars.RAILWAY_PROJECT_ID }}
-      RAILWAY_ENVIRONMENT_NAME: ${{ vars.RAILWAY_ENVIRONMENT_NAME }}
-      RAILWAY_SERVICE_NAME: ${{ vars.RAILWAY_SERVICE_NAME }}
-
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install Railway CLI
-        run: npm install --global @railway/cli
-
-      - name: Deploy to Railway staging
-        run: railway up --ci --service "$RAILWAY_SERVICE_NAME" --environment "$RAILWAY_ENVIRONMENT_NAME" --project "$RAILWAY_PROJECT_ID"
+  # Staging deploy is intentionally disabled for now while only the production
+  # Railway target is being configured and tested.
+  #
+  # deploy-staging:
+  #   name: Deploy Staging
+  #   runs-on: ubuntu-latest
+  #   needs: verify
+  #   if: github.event_name == 'push' && github.ref == 'refs/heads/test'
+  #   environment:
+  #     name: staging
+  #   env:
+  #     RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+  #     RAILWAY_SERVICE_NAME: ${{ vars.RAILWAY_SERVICE_NAME }}
+  #
+  #   steps:
+  #     - name: Check out code
+  #       uses: actions/checkout@v4
+  #
+  #     - name: Set up Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 20
+  #
+  #     - name: Install Railway CLI
+  #       run: npm install --global @railway/cli
+  #
+  #     - name: Validate Railway deploy inputs
+  #       run: |
+  #         test -n "$RAILWAY_TOKEN" || { echo "Missing RAILWAY_TOKEN"; exit 1; }
+  #         test -n "$RAILWAY_SERVICE_NAME" || { echo "Missing RAILWAY_SERVICE_NAME"; exit 1; }
+  #
+  #     - name: Deploy to Railway staging
+  #       run: railway up --ci --service "$RAILWAY_SERVICE_NAME"
 
   deploy-production:
     name: Deploy Production
@@ -70,8 +76,6 @@ jobs:
       name: production
     env:
       RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-      RAILWAY_PROJECT_ID: ${{ vars.RAILWAY_PROJECT_ID }}
-      RAILWAY_ENVIRONMENT_NAME: ${{ vars.RAILWAY_ENVIRONMENT_NAME }}
       RAILWAY_SERVICE_NAME: ${{ vars.RAILWAY_SERVICE_NAME }}
 
     steps:
@@ -86,5 +90,10 @@ jobs:
       - name: Install Railway CLI
         run: npm install --global @railway/cli
 
+      - name: Validate Railway deploy inputs
+        run: |
+          test -n "$RAILWAY_TOKEN" || { echo "Missing RAILWAY_TOKEN"; exit 1; }
+          test -n "$RAILWAY_SERVICE_NAME" || { echo "Missing RAILWAY_SERVICE_NAME"; exit 1; }
+
       - name: Deploy to Railway production
-        run: railway up --ci --service "$RAILWAY_SERVICE_NAME" --environment "$RAILWAY_ENVIRONMENT_NAME" --project "$RAILWAY_PROJECT_ID"
+        run: railway up --ci --service "$RAILWAY_SERVICE_NAME"
