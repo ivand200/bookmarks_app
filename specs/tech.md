@@ -17,7 +17,7 @@
 - Validate form inputs with shared Zod schemas before calling business logic or persistence code.
 - Keep bookmark business rules in `src/lib/server/bookmarks/`, with route actions coordinating HTTP concerns and the repository layer owning raw Supabase access.
 - Keep tests close to the modules they verify, using Vitest node tests for business logic, validation, and access-control boundaries rather than browser E2E flows.
-- Preserve the repo's documented frontend direction in `docs/visual-direction.md`, `docs/style-guide.md`, and `docs/frontend-workflow.md` when evolving UI.
+- Preserve the repo's documented frontend direction in `docs/frontend.md` and `docs/frontend-workflow.md` when evolving UI.
 
 ## Technical Constraints
 - Server-side Logto and Supabase environment variables are required for the app to boot correctly.

@@ -10,6 +10,10 @@ export const load: PageServerLoad = async ({ locals }) => {
 
 export const actions: Actions = {
 	signIn: async ({ locals, url }) => {
+		locals.requestKind = "action";
+		locals.requestAction = "signIn";
+		locals.requestOutcome = "success";
+
 		await locals.logtoClient.signIn(getSignInRedirectUri(url));
 	},
 };

@@ -4,9 +4,20 @@ import type { LogtoClient, UserInfoResponse } from "@logto/sveltekit";
 
 declare global {
 	namespace App {
-		// interface Error {}
+		interface Error {
+			message: string;
+			errorId: string;
+		}
 		interface Locals {
 			logtoClient: LogtoClient;
+			requestId?: string;
+			requestAction?: string;
+			requestKind?: "action" | "api" | "page";
+			requestOutcome?:
+				| "not_found"
+				| "server_error"
+				| "success"
+				| "validation_error";
 			user?: UserInfoResponse;
 		}
 		// interface PageData {}

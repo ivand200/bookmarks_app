@@ -4,8 +4,7 @@
 
 Use this workflow when building or changing screens in this app.
 
-- [visual-direction.md](./visual-direction.md) tells you what the app should feel like
-- [style-guide.md](./style-guide.md) tells you how to implement that feeling consistently
+- [frontend.md](./frontend.md) defines the app's frontend direction and implementation rules
 
 ## Default Process
 
@@ -56,7 +55,7 @@ Do not add a new primitive for a one-off decorative flourish.
 ## Definition Of Done For UI Changes
 
 - fits the `quiet archive` direction
-- follows the style guide rules
+- follows the frontend guide rules
 - works on desktop and mobile
 - keeps good contrast and readable hierarchy
 - uses descriptive page title

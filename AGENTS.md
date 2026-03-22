@@ -13,8 +13,7 @@ Do not duplicate durable project knowledge here when it already lives in the ste
 For UI work, also use:
 
 - `docs/frontend-workflow.md`
-- `docs/style-guide.md`
-- `docs/visual-direction.md`
+- `docs/frontend.md`
 
 ## Project Snapshot
 
@@ -85,8 +84,7 @@ When work involves DaisyUI components, classes, themes, or usage rules:
 Use repository UI docs together with DaisyUI docs:
 
 - `docs/frontend-workflow.md`
-- `docs/style-guide.md`
-- `docs/visual-direction.md`
+- `docs/frontend.md`
 
 Use DaisyUI docs for component and framework facts.
 Use repo docs for this product's visual language and design decisions.

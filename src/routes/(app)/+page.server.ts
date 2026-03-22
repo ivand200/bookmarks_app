@@ -5,6 +5,7 @@ import {
 	BookmarkRepositoryError,
 } from "$lib/server/bookmarks/errors";
 import { createBookmarkService } from "$lib/server/bookmarks/service";
+import { getRequestContext, logger } from "$lib/server/observability/logger";
 import {
 	createBookmarkSchema,
 	deleteBookmarkSchema,
@@ -39,10 +40,15 @@ export const load: PageServerLoad = async ({ locals }) => {
 
 export const actions: Actions = {
 	createBookmark: async ({ request, locals }) => {
+		locals.requestKind = "action";
+		locals.requestAction = "createBookmark";
+
 		const values = getCreateBookmarkValues(await request.formData());
 		const parsedInput = createBookmarkSchema.safeParse(values);
 
 		if (!parsedInput.success) {
+			locals.requestOutcome = "validation_error";
+
 			return fail(400, {
 				createBookmark: {
 					success: false,
@@ -59,6 +65,8 @@ export const actions: Actions = {
 				...parsedInput.data,
 			});
 
+			locals.requestOutcome = "success";
+
 			return {
 				createBookmark: {
 					success: true,
@@ -67,6 +75,16 @@ export const actions: Actions = {
 			};
 		} catch (error) {
 			if (error instanceof BookmarkRepositoryError) {
+				locals.requestOutcome = "server_error";
+
+				logger.error(
+					"bookmark.create_failed",
+					{
+						...getRequestContext(locals),
+					},
+					error,
+				);
+
 				return fail(500, {
 					createBookmark: {
 						success: false,
@@ -81,10 +99,15 @@ export const actions: Actions = {
 	},
 
 	deleteBookmark: async ({ request, locals }) => {
+		locals.requestKind = "action";
+		locals.requestAction = "deleteBookmark";
+
 		const values = getDeleteBookmarkValues(await request.formData());
 		const parsedInput = deleteBookmarkSchema.safeParse(values);
 
 		if (!parsedInput.success) {
+			locals.requestOutcome = "validation_error";
+
 			return fail(400, {
 				deleteBookmark: {
 					success: false,
@@ -101,6 +124,8 @@ export const actions: Actions = {
 				...parsedInput.data,
 			});
 
+			locals.requestOutcome = "success";
+
 			return {
 				deleteBookmark: {
 					success: true,
@@ -109,6 +134,8 @@ export const actions: Actions = {
 			};
 		} catch (error) {
 			if (error instanceof BookmarkNotFoundError) {
+				locals.requestOutcome = "not_found";
+
 				return fail(404, {
 					deleteBookmark: {
 						success: false,
@@ -119,6 +146,17 @@ export const actions: Actions = {
 			}
 
 			if (error instanceof BookmarkRepositoryError) {
+				locals.requestOutcome = "server_error";
+
+				logger.error(
+					"bookmark.delete_failed",
+					{
+						bookmark_id: parsedInput.data.bookmarkId,
+						...getRequestContext(locals),
+					},
+					error,
+				);
+
 				return fail(500, {
 					deleteBookmark: {
 						success: false,
@@ -133,6 +171,10 @@ export const actions: Actions = {
 	},
 
 	signOut: async ({ locals, url }) => {
+		locals.requestKind = "action";
+		locals.requestAction = "signOut";
+		locals.requestOutcome = "success";
+
 		await locals.logtoClient.signOut(getSignOutRedirectUri(url));
 	},
 };
