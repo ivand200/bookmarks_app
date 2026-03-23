@@ -21,12 +21,14 @@
 - Put authentication gates in shared layouts when a route group should be protected, instead of repeating checks in every page.
 - Keep route server modules focused on load/action orchestration, response shaping, and error mapping.
 - Keep domain rules and normalization in service modules, and isolate raw Supabase queries plus row mapping in repository modules.
+- Keep bookmark organization work close to the bookmark domain unless tags, folders, or saved views become complex enough to deserve their own server-side module.
 - Share validation through `src/lib/validators/` so form parsing and server-side enforcement stay aligned.
 - Reuse documented UI primitives and visual rules before adding new ad hoc styling patterns.
 
 ## Where To Put New Work
 - Add new pages, endpoints, and route-level actions in `src/routes/`, using route groups for authenticated surfaces where appropriate.
 - Add new server-side business logic or integrations under `src/lib/server/<domain>/`.
+- Keep bookmark-specific tags, folders, and collection navigation logic under `src/lib/server/bookmarks/` until the organization model becomes broad enough to split out intentionally.
 - Add shared schemas and form helpers under `src/lib/validators/`.
 - Add or update domain types in `src/lib/types/`.
 - Add schema changes in `supabase/migrations/`.

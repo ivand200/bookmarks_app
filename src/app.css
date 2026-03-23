@@ -142,8 +142,20 @@
 		@apply border border-base-300/60 bg-base-100/72 shadow-lg shadow-base-content/5 backdrop-blur;
 	}
 
+	.archive-band {
+		@apply border-b border-base-300/70 bg-base-100/68 backdrop-blur;
+	}
+
+	.archive-band-form {
+		@apply border-t border-base-300/70 pt-5;
+	}
+
 	.archive-chip {
 		@apply badge rounded-full border-base-300/70 bg-base-100/70 px-3 py-3 text-base-content/70;
+	}
+
+	.archive-inline-input {
+		@apply shadow-none;
 	}
 
 	.archive-toolbar-button {
@@ -172,6 +184,18 @@
 
 	.archive-empty-state-icon {
 		@apply mx-auto grid h-16 w-16 place-items-center rounded-3xl bg-primary/12 text-primary;
+	}
+
+	.archive-rule-list {
+		@apply divide-y divide-base-300/70;
+	}
+
+	.archive-rule-row {
+		@apply py-5;
+	}
+
+	.archive-mobile-entry {
+		@apply rounded-[1.6rem] border border-base-300/80 bg-base-100/42 p-4 shadow-sm shadow-base-content/5;
 	}
 
 	.archive-table tbody tr {

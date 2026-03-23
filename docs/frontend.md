@@ -31,6 +31,7 @@ This app should not feel like:
 
 - The product is about collecting and returning to links, so the interface should feel dependable and low-noise
 - The current layout already uses one dominant collection workspace, which fits an archival tool better than a card-heavy dashboard
+- The next phase of the product will likely introduce tags and folder-style organization, so the visual system should be able to support category-aware navigation without losing calmness
 - DaisyUI provides the right primitives already, so the design should evolve through disciplined use rather than custom component invention
 
 ## Core Rules
@@ -103,6 +104,8 @@ Color discipline rules:
 - Center the app in one stable shell width
 - Keep the top bar visually distinct from the main workspace
 - Place the primary action flow close to the content it changes
+- When bookmark organization is added, a narrow left navigation is allowed if it represents real top-level collections such as folders or curated shelf sections
+- Do not add a sidebar just to decorate the layout; navigation must map to actual product structure
 - Let tables breathe; do not squeeze them into secondary mini-cards
 - Mobile can collapse to stacked cards, but desktop should preserve scanability
 - Empty states should occupy the real content region, not appear as tiny side notes
@@ -121,6 +124,12 @@ These are the current reusable visual patterns and should be preferred over crea
   - small uppercase metadata label
 - `archive-chip`
   - neutral count/meta pill
+- `archive-band`
+  - unified workspace header band that groups title, count, filters, and add flow
+- `archive-band-form`
+  - hairline-separated form row inside a workspace band
+- `archive-rule-list`
+  - editorial list rhythm with quiet row dividers
 - `archive-table`
   - bookmark table styling with restrained hover behavior
 
@@ -139,11 +148,22 @@ If a new pattern repeats on two screens, it should either reuse one of these or 
 
 - Treat the collection area as the dominant page surface
 - Heading, count, add row, and content list should read as one flow
+- Prefer a compact unified header band when title, count, filters, and add actions belong to the same workspace
+- Prefer a single banded header over stacking multiple small cards above the list
 - Avoid splitting the user's attention between multiple same-weight containers
+
+### Collection Navigation
+
+- Folder-style navigation may live in a narrow left rail when it reflects real product structure
+- Left navigation should feel like a shelf index, not application chrome
+- Keep labels short, calm, and scannable
+- Hide the left rail on small screens and collapse navigation into a simpler mobile control
+- Tags should not automatically become sidebar navigation; treat them as filters or row metadata unless the product model changes
 
 ### Add Row
 
 - MVP visible form stays `URL + Add`
+- When the add flow lives in a workspace band, keep it visually attached to the title/count region with a quiet divider
 - Validation stays inline under the field
 - Success feedback should be present but quieter than the content region
 - Inputs and actions should share the same radius rhythm
@@ -154,18 +174,22 @@ If a new pattern repeats on two screens, it should either reuse one of these or 
 - Headers should be clean, compact, and scannable
 - Destructive actions should be obvious but visually contained
 - Metadata under primary row content should remain quieter than the main link text
+- Dates and domains can stay visible when they help scanning, but they should remain clearly secondary to the bookmark title
+- A ruled editorial list is preferred over a heavy boxed table when the content is primarily for scanning and reading
 
 ### Mobile Cards
 
 - Use cards only as the small-screen adaptation of the collection list
 - Keep each card simple: primary URL, quiet metadata, one clear delete action
+- Mobile cards should inherit the same calm hierarchy as desktop rows rather than becoming more colorful or feature-heavy
 - Do not make mobile cards more decorative than the desktop table
 
 ### Badges And Chips
 
-- Use for counts, hostnames, and short metadata
+- Use for counts, hostnames, tags, and short metadata
 - Prefer neutral and outline treatments by default
 - Reserve stronger color chips for true emphasis
+- If tag filtering is introduced, selected states should be clear without making the chip row louder than the bookmark list
 
 ### Alerts
 
@@ -205,6 +229,7 @@ Its identity should come from restraint:
 - better spacing rhythm
 - deliberate use of labels, chips, and metadata
 - one dominant workspace instead of many competing panels
+- organization that feels like a private shelf, not a productivity dashboard
 
 ## Accessibility Rules
 
@@ -231,11 +256,20 @@ The current implementation already expresses this direction through:
 
 - warm/cool theme token customization in `src/app.css`
 - one dominant collection workspace on the bookmark page
+- a unified header band for title, count, and add flow
+- a quieter ruled list rhythm for bookmark scanning
 - quiet metadata labels and chips
 - restrained action color usage
 - soft atmospheric page background with calmer foreground surfaces
 
 Future screens should feel like siblings of this page, not reinventions.
+
+## Near-Term UI Direction
+
+- The app should be ready to grow from a single bookmark list into an organized archive with tags and likely folders
+- Category-style navigation is an approved direction when it represents real collections rather than invented marketing structure
+- If both folders and tags exist, folders should carry more navigational weight and tags should stay secondary as filters or metadata
+- The preferred mood for future organization UI is editorial and ruled rather than card-heavy or panel-heavy
 
 ## Out Of Scope For Now
 

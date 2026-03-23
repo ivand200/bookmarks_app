@@ -13,6 +13,7 @@ Use this workflow when building or changing screens in this app.
 - What is the user trying to do on this screen?
 - What should be the dominant workspace?
 - What is the primary action?
+- If there is category navigation, does it correspond to real folders, collections, or filters in the product model?
 
 2. Check visual direction
 
@@ -24,6 +25,7 @@ Use this workflow when building or changing screens in this app.
 - check `src/app.css`
 - reuse `archive-*` primitives where they already fit
 - prefer existing page patterns before inventing new ones
+- prefer the unified workspace band + ruled list pattern before introducing stacked panels or heavier table chrome
 
 4. Use DaisyUI before custom CSS
 
@@ -34,6 +36,7 @@ Use this workflow when building or changing screens in this app.
 5. Build one responsive hierarchy
 
 - desktop: preserve scanability and strong structure
+- if organization is present: let folder-style navigation stay narrow and subordinate to the main workspace
 - mobile: simplify and stack without changing the product’s tone
 
 6. Run the frontend quality pass
@@ -41,6 +44,8 @@ Use this workflow when building or changing screens in this app.
 - is the hierarchy obvious in 3 seconds?
 - is the primary action near the content it affects?
 - is metadata quieter than primary content?
+- if this is a collection screen, would a unified header band read more clearly than separate surface blocks?
+- if a sidebar exists, does it represent real information architecture rather than decorative chrome?
 - is the page still calm after adding states and feedback?
 
 ## When To Add A New Primitive

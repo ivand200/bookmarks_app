@@ -15,7 +15,8 @@
 ## Engineering Conventions
 - Resolve auth on the server and pass user state through `locals` and server load functions.
 - Validate form inputs with shared Zod schemas before calling business logic or persistence code.
-- Keep bookmark business rules in `src/lib/server/bookmarks/`, with route actions coordinating HTTP concerns and the repository layer owning raw Supabase access.
+- Keep bookmark business rules in `src/lib/server/bookmarks/`, including near-term organization concerns such as tags or folders until they clearly justify a separate domain module.
+- Keep route actions coordinating HTTP concerns and the repository layer owning raw Supabase access.
 - Keep tests close to the modules they verify, using Vitest node tests for business logic, validation, and access-control boundaries rather than browser E2E flows.
 - Preserve the repo's documented frontend direction in `docs/frontend.md` and `docs/frontend-workflow.md` when evolving UI.
 
