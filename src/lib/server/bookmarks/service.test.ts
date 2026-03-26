@@ -19,6 +19,7 @@ function createBookmark(overrides: Partial<Bookmark> = {}): Bookmark {
 function createRepository() {
 	return {
 		listByUserId: vi.fn<() => Promise<Bookmark[]>>(),
+		countByUserId: vi.fn<() => Promise<number>>(),
 		create: vi.fn(),
 		deleteByIdAndUserId: vi.fn<() => Promise<boolean>>(),
 	};
@@ -32,9 +33,13 @@ describe("createBookmarkService", () => {
 			repository.listByUserId.mockResolvedValue(bookmarks);
 
 			const service = createBookmarkService(repository);
-			const result = await service.listBookmarks("  user-123  ");
+			const result = await service.listBookmarks({
+				userId: "  user-123  ",
+			});
 
-			expect(repository.listByUserId).toHaveBeenCalledWith("user-123");
+			expect(repository.listByUserId).toHaveBeenCalledWith({
+				userId: "user-123",
+			});
 			expect(result).toEqual(bookmarks);
 		});
 
@@ -55,22 +60,63 @@ describe("createBookmarkService", () => {
 			repository.listByUserId.mockResolvedValue(bookmarks);
 
 			const service = createBookmarkService(repository);
-			const result = await service.listBookmarks("user-123");
+			const result = await service.listBookmarks({
+				userId: "user-123",
+			});
 
-			expect(repository.listByUserId).toHaveBeenCalledWith("user-123");
+			expect(repository.listByUserId).toHaveBeenCalledWith({
+				userId: "user-123",
+			});
 			expect(result).toEqual(bookmarks);
 			expect(result.every((bookmark) => bookmark.userId === "user-123")).toBe(
 				true,
 			);
 		});
 
+		it("given a search query with extra whitespace, when bookmarks are listed, then the repository receives the trimmed query", async () => {
+			const repository = createRepository();
+			const bookmarks = [createBookmark()];
+			repository.listByUserId.mockResolvedValue(bookmarks);
+
+			const service = createBookmarkService(repository);
+			const result = await service.listBookmarks({
+				userId: "user-123",
+				searchQuery: "  FaceBook  ",
+			});
+
+			expect(repository.listByUserId).toHaveBeenCalledWith({
+				userId: "user-123",
+				searchQuery: "FaceBook",
+			});
+			expect(result).toEqual(bookmarks);
+		});
+
+		it("given a blank search query, when bookmarks are listed, then the repository receives the unfiltered user-scoped request", async () => {
+			const repository = createRepository();
+			const bookmarks = [createBookmark()];
+			repository.listByUserId.mockResolvedValue(bookmarks);
+
+			const service = createBookmarkService(repository);
+			const result = await service.listBookmarks({
+				userId: "  user-123  ",
+				searchQuery: "   ",
+			});
+
+			expect(repository.listByUserId).toHaveBeenCalledWith({
+				userId: "user-123",
+			});
+			expect(result).toEqual(bookmarks);
+		});
+
 		it("given a blank user id, when bookmarks are listed, then validation fails before the repository is called", async () => {
 			const repository = createRepository();
 			const service = createBookmarkService(repository);
 
-			await expect(service.listBookmarks("   ")).rejects.toThrow(
-				BookmarkValidationError,
-			);
+			await expect(
+				service.listBookmarks({
+					userId: "   ",
+				}),
+			).rejects.toThrow(BookmarkValidationError);
 			expect(repository.listByUserId).not.toHaveBeenCalled();
 		});
 	});
@@ -125,6 +171,29 @@ describe("createBookmarkService", () => {
 				}),
 			).rejects.toThrow(BookmarkValidationError);
 			expect(repository.create).not.toHaveBeenCalled();
+		});
+	});
+
+	describe("countBookmarks", () => {
+		it("given a user id with extra whitespace, when bookmarks are counted, then the repository receives the trimmed user id", async () => {
+			const repository = createRepository();
+			repository.countByUserId.mockResolvedValue(3);
+
+			const service = createBookmarkService(repository);
+			const result = await service.countBookmarks("  user-123  ");
+
+			expect(repository.countByUserId).toHaveBeenCalledWith("user-123");
+			expect(result).toBe(3);
+		});
+
+		it("given a blank user id, when bookmarks are counted, then validation fails before the repository is called", async () => {
+			const repository = createRepository();
+			const service = createBookmarkService(repository);
+
+			await expect(service.countBookmarks("   ")).rejects.toThrow(
+				BookmarkValidationError,
+			);
+			expect(repository.countByUserId).not.toHaveBeenCalled();
 		});
 	});
 

@@ -1,7 +1,7 @@
 # Product Spec
 
 ## Purpose
-- Provide a personal bookmark manager where signed-in users can save, organize, and manage links in one protected workspace.
+- Provide a private bookmark manager where signed-in users can save, find, and manage links in one protected workspace.
 
 ## Users / Actors
 - Signed-in end users who maintain their own bookmark collection.
@@ -11,15 +11,18 @@
 ## Core Workflows
 - Unauthenticated visitors are routed to `/login` and begin sign-in through Logto.
 - Authenticated users enter the protected app area and view only the bookmarks tied to their account.
-- Users add a bookmark from a URL-only form and remove existing bookmarks from the same workspace.
-- The near-term product direction includes lightweight bookmark organization through tags and likely folder-style collections.
+- Users add a bookmark from the URL-only form and remove existing bookmarks from the same workspace.
+- Users search saved links by URL without leaving the main bookmark workspace.
+- Signed-in users can end their session from the protected app shell.
+
+## Core Domain Concepts
+- A bookmark is a user-owned saved link with a canonical URL, optional title/description fields, and created/updated timestamps.
+- The product centers on one personal workspace per signed-in user rather than multiple shared collections.
 
 ## Scope Boundaries
 - The current product scope is a personal bookmark MVP, not a shared or collaborative system.
 - The visible bookmark workflow is intentionally limited to `URL + Add`, even though the data model already has `title` and `description` fields for future expansion.
-- The app still focuses on managing saved links after sign-in, but bookmark organization workflows are now part of the near-term roadmap.
-- Category-style navigation is now a valid product direction when it reflects real bookmark organization, especially folders or curated top-level collections.
-- Tags and folders are not interchangeable: folders should be treated as stronger navigation candidates, while tags should remain lightweight metadata and filtering tools unless a later product decision says otherwise.
+- Search is part of the core workflow, but richer organization such as tags, folders, or curated collections is not yet a primary product surface.
 
 ## Durable Constraints
 - Protected app routes must require authentication before rendering bookmark data.

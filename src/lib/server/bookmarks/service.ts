@@ -2,7 +2,9 @@ import type {
 	Bookmark,
 	CreateBookmarkInput,
 	DeleteBookmarkInput,
+	ListBookmarksInput,
 } from "$lib/types/bookmark";
+import { normalizeBookmarkSearchQuery } from "$lib/validators/bookmark";
 import { BookmarkNotFoundError, BookmarkValidationError } from "./errors";
 import type { BookmarkRepository } from "./repository";
 import { createBookmarkRepository } from "./repository";
@@ -50,7 +52,8 @@ function normalizeOptionalValue(value: string | null | undefined) {
 }
 
 export type BookmarkService = {
-	listBookmarks(userId: string): Promise<Bookmark[]>;
+	listBookmarks(input: ListBookmarksInput): Promise<Bookmark[]>;
+	countBookmarks(userId: string): Promise<number>;
 	createBookmark(input: CreateBookmarkInput): Promise<Bookmark>;
 	deleteBookmark(input: DeleteBookmarkInput): Promise<void>;
 };
@@ -59,8 +62,18 @@ export function createBookmarkService(
 	repository: BookmarkRepository = createBookmarkRepository(),
 ): BookmarkService {
 	return {
-		async listBookmarks(userId) {
-			return repository.listByUserId(requireNonEmpty(userId, "User ID"));
+		async listBookmarks(input) {
+			const userId = requireNonEmpty(input.userId, "User ID");
+			const searchQuery = normalizeBookmarkSearchQuery(input.searchQuery);
+
+			return repository.listByUserId({
+				userId,
+				...(searchQuery ? { searchQuery } : {}),
+			});
+		},
+
+		async countBookmarks(userId) {
+			return repository.countByUserId(requireNonEmpty(userId, "User ID"));
 		},
 
 		async createBookmark(input) {

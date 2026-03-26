@@ -15,6 +15,11 @@ export type CreateBookmarkInput = {
 	description?: string | null;
 };
 
+export type ListBookmarksInput = {
+	userId: string;
+	searchQuery?: string | null;
+};
+
 export type DeleteBookmarkInput = {
 	userId: string;
 	bookmarkId: string;

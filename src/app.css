@@ -9,29 +9,29 @@
 	default: true;
 	prefersdark: false;
 	color-scheme: light;
-	--color-base-100: oklch(98% 0.008 85);
-	--color-base-200: oklch(95.5% 0.012 85);
-	--color-base-300: oklch(91% 0.016 85);
-	--color-base-content: oklch(27% 0.03 255);
-	--color-primary: oklch(48% 0.09 248);
-	--color-primary-content: oklch(97% 0.01 248);
-	--color-secondary: oklch(56% 0.065 195);
-	--color-secondary-content: oklch(97% 0.01 195);
-	--color-accent: oklch(72% 0.09 84);
-	--color-accent-content: oklch(25% 0.03 84);
-	--color-neutral: oklch(30% 0.03 255);
-	--color-neutral-content: oklch(95% 0.01 255);
-	--color-info: oklch(62% 0.1 235);
-	--color-info-content: oklch(97% 0.01 235);
-	--color-success: oklch(65% 0.09 160);
-	--color-success-content: oklch(22% 0.02 160);
-	--color-warning: oklch(78% 0.11 84);
-	--color-warning-content: oklch(25% 0.03 84);
-	--color-error: oklch(62% 0.16 28);
-	--color-error-content: oklch(97% 0.01 28);
-	--radius-selector: 1rem;
-	--radius-field: 1.2rem;
-	--radius-box: 1.8rem;
+	--color-base-100: oklch(98.2% 0.005 82);
+	--color-base-200: oklch(96.8% 0.007 82);
+	--color-base-300: oklch(90.8% 0.012 80);
+	--color-base-content: oklch(29% 0.018 48);
+	--color-primary: oklch(29% 0.018 48);
+	--color-primary-content: oklch(98.5% 0.004 82);
+	--color-secondary: oklch(93.8% 0.01 82);
+	--color-secondary-content: oklch(35% 0.018 48);
+	--color-accent: oklch(92.4% 0.014 76);
+	--color-accent-content: oklch(29% 0.018 48);
+	--color-neutral: oklch(31% 0.013 48);
+	--color-neutral-content: oklch(96.8% 0.006 82);
+	--color-info: oklch(62% 0.075 240);
+	--color-info-content: oklch(98% 0.004 240);
+	--color-success: oklch(54% 0.08 152);
+	--color-success-content: oklch(98% 0.005 152);
+	--color-warning: oklch(72% 0.1 84);
+	--color-warning-content: oklch(25% 0.02 84);
+	--color-error: oklch(58% 0.16 28);
+	--color-error-content: oklch(98% 0.005 28);
+	--radius-selector: 0.25rem;
+	--radius-field: 0.25rem;
+	--radius-box: 0.4rem;
 	--size-selector: 0.25rem;
 	--size-field: 0.25rem;
 	--border: 1px;
@@ -43,29 +43,29 @@
 	default: false;
 	prefersdark: true;
 	color-scheme: dark;
-	--color-base-100: oklch(23% 0.018 255);
-	--color-base-200: oklch(20% 0.016 255);
-	--color-base-300: oklch(27% 0.018 255);
-	--color-base-content: oklch(92% 0.008 85);
-	--color-primary: oklch(73% 0.08 248);
-	--color-primary-content: oklch(21% 0.02 248);
-	--color-secondary: oklch(70% 0.06 195);
-	--color-secondary-content: oklch(22% 0.02 195);
-	--color-accent: oklch(78% 0.08 84);
-	--color-accent-content: oklch(22% 0.02 84);
-	--color-neutral: oklch(33% 0.02 255);
-	--color-neutral-content: oklch(94% 0.008 85);
-	--color-info: oklch(72% 0.08 235);
-	--color-info-content: oklch(21% 0.02 235);
-	--color-success: oklch(72% 0.08 160);
-	--color-success-content: oklch(20% 0.02 160);
-	--color-warning: oklch(81% 0.09 84);
-	--color-warning-content: oklch(21% 0.02 84);
-	--color-error: oklch(72% 0.13 28);
-	--color-error-content: oklch(21% 0.02 28);
-	--radius-selector: 1rem;
-	--radius-field: 1.2rem;
-	--radius-box: 1.8rem;
+	--color-base-100: oklch(20% 0.006 55);
+	--color-base-200: oklch(17% 0.005 55);
+	--color-base-300: oklch(28% 0.006 55);
+	--color-base-content: oklch(91% 0.006 82);
+	--color-primary: oklch(91% 0.006 82);
+	--color-primary-content: oklch(19% 0.006 55);
+	--color-secondary: oklch(24% 0.005 55);
+	--color-secondary-content: oklch(88% 0.006 82);
+	--color-accent: oklch(28% 0.008 70);
+	--color-accent-content: oklch(90% 0.006 82);
+	--color-neutral: oklch(29% 0.006 55);
+	--color-neutral-content: oklch(92% 0.006 82);
+	--color-info: oklch(73% 0.06 240);
+	--color-info-content: oklch(19% 0.006 240);
+	--color-success: oklch(70% 0.07 152);
+	--color-success-content: oklch(18% 0.006 152);
+	--color-warning: oklch(78% 0.09 84);
+	--color-warning-content: oklch(20% 0.006 84);
+	--color-error: oklch(70% 0.13 28);
+	--color-error-content: oklch(19% 0.006 28);
+	--radius-selector: 0.25rem;
+	--radius-field: 0.25rem;
+	--radius-box: 0.4rem;
 	--size-selector: 0.25rem;
 	--size-field: 0.25rem;
 	--border: 1px;
@@ -76,7 +76,7 @@
 @layer base {
 	:root {
 		scroll-behavior: smooth;
-		--app-shell-max-width: 72rem;
+		--app-shell-max-width: 82rem;
 	}
 
 	html,
@@ -87,126 +87,230 @@
 	body {
 		background-color: var(--color-base-200);
 		color: var(--color-base-content);
+		font-family:
+			Iowan Old Style,
+			Palatino Linotype,
+			Book Antiqua,
+			Georgia,
+			Times New Roman,
+			serif;
 	}
 
 	[data-theme="light"] body {
-		background-image:
-			radial-gradient(
-				circle at top left,
-				oklch(88% 0.035 235 / 0.35),
-				transparent 28rem
-			),
-			radial-gradient(
-				circle at bottom right,
-				oklch(90% 0.04 85 / 0.45),
-				transparent 24rem
-			),
-			linear-gradient(180deg, oklch(99% 0.004 85), oklch(95.8% 0.01 85));
+		background-image: linear-gradient(
+			180deg,
+			oklch(99% 0.003 82),
+			oklch(96.9% 0.007 82)
+		);
 	}
 
 	[data-theme="dark"] body {
-		background-image:
-			radial-gradient(
-				circle at top left,
-				oklch(34% 0.05 248 / 0.35),
-				transparent 26rem
-			),
-			radial-gradient(
-				circle at bottom right,
-				oklch(30% 0.04 195 / 0.22),
-				transparent 22rem
-			),
-			linear-gradient(180deg, oklch(24% 0.016 255), oklch(19% 0.014 255));
+		background-image: linear-gradient(
+			180deg,
+			oklch(18% 0.005 55),
+			oklch(16% 0.004 55)
+		);
 	}
 
 	::selection {
-		background-color: color-mix(in oklab, var(--color-primary) 24%, white 12%);
-		color: var(--color-base-content);
+		background-color: color-mix(in oklab, var(--color-primary) 20%, white 12%);
+		color: var(--color-base-100);
 	}
 }
 
 @layer components {
-	.archive-kicker {
-		@apply text-[0.72rem] font-medium uppercase tracking-[0.34em] text-base-content/45;
+	.shelf-page {
+		@apply min-h-screen bg-base-200 px-4 py-4 sm:px-6 lg:px-8;
 	}
 
-	.archive-shell {
+	.shelf-sitebar {
 		max-width: var(--app-shell-max-width);
+		@apply mx-auto flex items-end justify-between gap-6 border-b border-base-300/80 pb-3;
 	}
 
-	.archive-surface {
-		@apply border border-base-300/70 bg-base-100/88 shadow-xl shadow-base-content/5 backdrop-blur;
+	.shelf-kicker,
+	.shelf-nav-label {
+		@apply text-[0.66rem] font-medium uppercase tracking-[0.28em] text-base-content/36;
 	}
 
-	.archive-soft-surface {
-		@apply border border-base-300/60 bg-base-100/72 shadow-lg shadow-base-content/5 backdrop-blur;
+	.shelf-site-title {
+		@apply mt-1 text-[1.9rem] leading-none tracking-[-0.02em] text-base-content sm:text-[2.1rem];
 	}
 
-	.archive-band {
-		@apply border-b border-base-300/70 bg-base-100/68 backdrop-blur;
+	.shelf-site-actions {
+		@apply flex items-center gap-3 text-sm;
 	}
 
-	.archive-band-form {
-		@apply border-t border-base-300/70 pt-5;
+	.shelf-utility-button {
+		@apply btn btn-ghost btn-sm h-auto min-h-0 rounded-none border-0 bg-transparent px-0 py-1 text-[0.72rem] font-medium uppercase tracking-[0.22em] text-base-content/54 shadow-none hover:bg-transparent hover:text-base-content focus-visible:outline-none;
 	}
 
-	.archive-chip {
-		@apply badge rounded-full border-base-300/70 bg-base-100/70 px-3 py-3 text-base-content/70;
+	.shelf-frame {
+		max-width: var(--app-shell-max-width);
+		@apply mx-auto mt-5 grid overflow-hidden border border-base-300/80 bg-base-100/96 md:min-h-[calc(100vh-7rem)] md:grid-cols-[12rem_minmax(0,1fr)];
 	}
 
-	.archive-inline-input {
-		@apply shadow-none;
+	.shelf-sidebar {
+		@apply hidden border-r border-base-300/80 px-5 py-7 md:flex md:flex-col;
 	}
 
-	.archive-toolbar-button {
-		@apply btn btn-ghost rounded-full border border-base-300/70 bg-base-100/70 px-3 text-sm shadow-sm shadow-base-content/5;
+	.shelf-sidebar-link {
+		@apply py-2 text-[1.04rem] leading-6 text-base-content/52 transition-colors hover:text-base-content;
 	}
 
-	.archive-avatar-button {
-		@apply btn btn-ghost h-auto rounded-full border border-base-300/70 bg-base-100/70 px-2 py-1 shadow-sm shadow-base-content/5;
+	.shelf-sidebar-link[aria-current="page"] {
+		@apply text-base-content;
 	}
 
-	.archive-dropdown-panel {
-		@apply rounded-3xl border border-base-300/80 bg-base-100 p-2 shadow-xl shadow-base-content/10;
+	.shelf-sidebar-link-muted {
+		@apply cursor-default text-base-content/28;
 	}
 
-	.archive-dropdown-inset {
-		@apply rounded-[1.5rem] bg-base-200/80 px-4 py-3;
+	.shelf-sidebar-note {
+		@apply mt-auto border-t border-base-300/80 pt-6;
 	}
 
-	.archive-primary-action {
-		@apply btn btn-primary rounded-[1.2rem] px-8 shadow-lg shadow-primary/15;
+	.shelf-workspace {
+		@apply min-w-0;
 	}
 
-	.archive-empty-state {
-		@apply grid min-h-[24rem] place-items-center rounded-[1.8rem] border border-dashed border-base-300 bg-base-200/55 p-8 text-center;
+	.shelf-band {
+		@apply sticky top-0 z-10 border-b border-base-300/80 bg-base-100/94 backdrop-blur-sm;
 	}
 
-	.archive-empty-state-icon {
-		@apply mx-auto grid h-16 w-16 place-items-center rounded-3xl bg-primary/12 text-primary;
+	.shelf-title-row {
+		@apply flex flex-col gap-4 px-5 py-5 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8 lg:py-7;
 	}
 
-	.archive-rule-list {
-		@apply divide-y divide-base-300/70;
+	.shelf-title-line {
+		@apply mt-3 flex flex-wrap items-baseline gap-3;
 	}
 
-	.archive-rule-row {
-		@apply py-5;
+	.shelf-title {
+		@apply text-[2rem] leading-none tracking-[-0.03em] text-base-content sm:text-[2.3rem];
 	}
 
-	.archive-mobile-entry {
-		@apply rounded-[1.6rem] border border-base-300/80 bg-base-100/42 p-4 shadow-sm shadow-base-content/5;
+	.shelf-count {
+		@apply text-sm tabular-nums text-base-content/38;
 	}
 
-	.archive-table tbody tr {
-		@apply transition-colors duration-200;
+	.shelf-search-form {
+		@apply flex w-full flex-col gap-2 lg:max-w-md;
 	}
 
-	.archive-table tbody tr:hover {
-		background-color: color-mix(
+	.shelf-search-field {
+		@apply flex min-h-11 items-center border border-base-300/80 bg-base-100/78 px-3;
+	}
+
+	.shelf-search-input {
+		appearance: none;
+		@apply h-auto min-h-0 w-full border-0 bg-transparent px-0 text-sm text-base-content shadow-none outline-none placeholder:text-base-content/34 focus:outline-none;
+	}
+
+	.shelf-search-input::-webkit-search-decoration,
+	.shelf-search-input::-webkit-search-cancel-button,
+	.shelf-search-input::-webkit-search-results-button,
+	.shelf-search-input::-webkit-search-results-decoration {
+		appearance: none;
+	}
+
+	.shelf-search-actions {
+		@apply flex items-center gap-2 self-end;
+	}
+
+	.shelf-add-row {
+		@apply flex flex-col gap-3 border-t border-base-300/80 px-5 py-3 sm:px-6 md:flex-row md:items-center lg:px-8;
+	}
+
+	.shelf-add-field {
+		@apply flex min-h-12 flex-1 items-center;
+	}
+
+	.shelf-inline-input {
+		appearance: none;
+		@apply h-auto min-h-0 w-full border-0 bg-transparent px-0 text-[0.98rem] text-base-content shadow-none outline-none placeholder:text-base-content/34 focus:outline-none;
+	}
+
+	.shelf-add-button {
+		@apply btn btn-ghost h-auto min-h-0 rounded-none border border-base-300/80 bg-transparent px-4 py-2 text-[0.72rem] font-medium uppercase tracking-[0.22em] text-base-content/58 shadow-none hover:border-base-content/55 hover:bg-transparent hover:text-base-content;
+	}
+
+	.shelf-quiet-button {
+		@apply btn btn-ghost h-auto min-h-0 rounded-none border border-base-300/80 bg-transparent px-3 py-2 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-base-content/54 shadow-none hover:border-base-content/55 hover:bg-transparent hover:text-base-content;
+	}
+
+	.shelf-quiet-button-strong {
+		@apply text-base-content;
+	}
+
+	.shelf-band-notes {
+		@apply px-5 pb-4 sm:px-6 lg:px-8;
+	}
+
+	.shelf-status-line {
+		@apply text-sm leading-6 text-base-content/46;
+	}
+
+	.shelf-feedback {
+		@apply mt-3 border-l-2 pl-3 text-sm leading-6;
+	}
+
+	.shelf-feedback-success {
+		border-color: color-mix(in oklab, var(--color-success) 70%, transparent);
+		color: color-mix(
 			in oklab,
-			var(--color-base-100) 82%,
-			var(--color-primary) 6%
+			var(--color-success) 75%,
+			var(--color-base-content) 25%
 		);
+	}
+
+	.shelf-feedback-error {
+		border-color: color-mix(in oklab, var(--color-error) 75%, transparent);
+		color: color-mix(
+			in oklab,
+			var(--color-error) 80%,
+			var(--color-base-content) 20%
+		);
+	}
+
+	.shelf-content {
+		@apply px-5 py-6 sm:px-6 lg:px-8 lg:py-8;
+	}
+
+	.shelf-empty-state {
+		@apply border border-dashed border-base-300/80 px-6 py-10 sm:px-8;
+	}
+
+	.shelf-rule-list,
+	.shelf-mobile-list {
+		@apply divide-y divide-base-300/80;
+	}
+
+	.shelf-entry {
+		@apply grid gap-4 py-4 lg:grid-cols-[minmax(0,1fr)_auto_auto] lg:items-start lg:gap-6;
+	}
+
+	.shelf-mobile-entry {
+		@apply py-4;
+	}
+
+	.shelf-entry-title {
+		@apply block text-[1.08rem] leading-snug text-base-content transition-colors hover:text-base-content/72;
+	}
+
+	.shelf-entry-summary {
+		@apply mt-1 text-base leading-7 text-base-content/58;
+	}
+
+	.shelf-entry-source {
+		@apply mt-1 text-xs leading-6 text-base-content/36;
+	}
+
+	.shelf-entry-time {
+		@apply pt-1 text-[0.72rem] uppercase tracking-[0.18em] text-base-content/34;
+	}
+
+	.shelf-delete-button {
+		@apply btn btn-ghost btn-sm h-auto min-h-0 rounded-none border border-base-300/80 bg-transparent px-3 py-2 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-base-content/44 shadow-none hover:border-error/70 hover:bg-transparent hover:text-error;
 	}
 }

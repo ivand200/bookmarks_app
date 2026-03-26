@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
+	bookmarkSearchQuerySchema,
 	createBookmarkSchema,
 	deleteBookmarkSchema,
 	getCreateBookmarkValues,
 	getDeleteBookmarkValues,
+	normalizeBookmarkSearchQuery,
 } from "./bookmark";
 
 describe("createBookmarkSchema", () => {
@@ -60,6 +62,23 @@ describe("deleteBookmarkSchema", () => {
 				"Bookmark id must be a valid UUID.",
 			);
 		}
+	});
+});
+
+describe("bookmarkSearchQuerySchema", () => {
+	it("given surrounding whitespace, when the search query is normalized, then the trimmed query is returned", () => {
+		expect(normalizeBookmarkSearchQuery("  youtube  ")).toBe("youtube");
+	});
+
+	it("given blank input, when the search query is normalized, then the result is null", () => {
+		expect(normalizeBookmarkSearchQuery("   ")).toBeNull();
+		expect(normalizeBookmarkSearchQuery("")).toBeNull();
+		expect(normalizeBookmarkSearchQuery(null)).toBeNull();
+		expect(normalizeBookmarkSearchQuery(undefined)).toBeNull();
+	});
+
+	it("given mixed-case input, when the schema parses it, then the trimmed casing is preserved", () => {
+		expect(bookmarkSearchQuerySchema.parse("  FaceBook  ")).toBe("FaceBook");
 	});
 });
 

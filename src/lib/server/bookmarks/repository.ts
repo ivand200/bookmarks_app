@@ -1,6 +1,10 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { getSupabaseServerClient } from "$lib/server/supabase";
-import type { Bookmark, CreateBookmarkInput } from "$lib/types/bookmark";
+import type {
+	Bookmark,
+	CreateBookmarkInput,
+	ListBookmarksInput,
+} from "$lib/types/bookmark";
 import { BookmarkRepositoryError } from "./errors";
 
 type BookmarkRow = {
@@ -16,6 +20,10 @@ type BookmarkRow = {
 const BOOKMARK_COLUMNS =
 	"id, user_id, url, title, description, created_at, updated_at";
 
+function escapeLikePattern(value: string) {
+	return value.replace(/[\\%_]/g, "\\$&");
+}
+
 function mapBookmark(row: BookmarkRow): Bookmark {
 	return {
 		id: row.id,
@@ -29,7 +37,8 @@ function mapBookmark(row: BookmarkRow): Bookmark {
 }
 
 export type BookmarkRepository = {
-	listByUserId(userId: string): Promise<Bookmark[]>;
+	listByUserId(input: ListBookmarksInput): Promise<Bookmark[]>;
+	countByUserId(userId: string): Promise<number>;
 	create(input: CreateBookmarkInput): Promise<Bookmark>;
 	deleteByIdAndUserId(bookmarkId: string, userId: string): Promise<boolean>;
 };
@@ -46,12 +55,19 @@ export function createBookmarkRepository(
 	}
 
 	return {
-		async listByUserId(userId) {
-			const { data, error } = await getSupabase()
+		async listByUserId({ userId, searchQuery }) {
+			let query = getSupabase()
 				.from("bookmarks")
 				.select(BOOKMARK_COLUMNS)
-				.eq("user_id", userId)
-				.order("created_at", { ascending: false });
+				.eq("user_id", userId);
+
+			if (searchQuery) {
+				query = query.ilike("url", `%${escapeLikePattern(searchQuery)}%`);
+			}
+
+			const { data, error } = await query.order("created_at", {
+				ascending: false,
+			});
 
 			if (error) {
 				throw new BookmarkRepositoryError("Failed to list bookmarks.", {
@@ -60,6 +76,21 @@ export function createBookmarkRepository(
 			}
 
 			return (data satisfies BookmarkRow[]).map(mapBookmark);
+		},
+
+		async countByUserId(userId) {
+			const { count, error } = await getSupabase()
+				.from("bookmarks")
+				.select("*", { count: "exact", head: true })
+				.eq("user_id", userId);
+
+			if (error) {
+				throw new BookmarkRepositoryError("Failed to count bookmarks.", {
+					cause: error,
+				});
+			}
+
+			return count ?? 0;
 		},
 
 		async create(input) {

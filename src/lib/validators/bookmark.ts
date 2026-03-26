@@ -17,6 +17,13 @@ const optionalTextField = formString(z.string().trim().optional()).transform(
 	(value) => (value && value.length > 0 ? value : null),
 );
 
+export const bookmarkSearchQuerySchema = z
+	.preprocess(
+		(value) => (typeof value === "string" ? value : undefined),
+		z.string().trim().optional(),
+	)
+	.transform((value) => (value && value.length > 0 ? value : null));
+
 const httpUrlField = formString(
 	z
 		.url({
@@ -50,6 +57,7 @@ export type DeleteBookmarkValues = {
 
 export type CreateBookmarkInput = z.output<typeof createBookmarkSchema>;
 export type DeleteBookmarkInput = z.output<typeof deleteBookmarkSchema>;
+export type BookmarkSearchQuery = z.output<typeof bookmarkSearchQuerySchema>;
 
 export function getCreateBookmarkValues(
 	formData: FormData,
@@ -67,4 +75,10 @@ export function getDeleteBookmarkValues(
 	return {
 		bookmarkId: readFormValue(formData, "bookmarkId"),
 	};
+}
+
+export function normalizeBookmarkSearchQuery(
+	value: string | null | undefined,
+): BookmarkSearchQuery {
+	return bookmarkSearchQuerySchema.parse(value);
 }

@@ -11,6 +11,7 @@ import {
 	deleteBookmarkSchema,
 	getCreateBookmarkValues,
 	getDeleteBookmarkValues,
+	normalizeBookmarkSearchQuery,
 } from "$lib/validators/bookmark";
 import type { Actions, PageServerLoad } from "./$types";
 
@@ -24,17 +25,34 @@ function getUserId(locals: App.Locals) {
 	return locals.user.sub;
 }
 
-export const load: PageServerLoad = async ({ locals }) => {
+export const load: PageServerLoad = async ({ locals, url }) => {
 	const userId = locals.user?.sub;
+	const searchQuery = normalizeBookmarkSearchQuery(url.searchParams.get("q"));
+	const hasActiveSearch = searchQuery !== null;
 
 	if (!userId) {
 		return {
 			bookmarks: [],
+			searchQuery: "",
+			hasActiveSearch: false,
+			totalBookmarks: 0,
 		};
 	}
 
+	const bookmarks = await bookmarkService.listBookmarks({
+		userId,
+		searchQuery,
+	});
+
+	const totalBookmarks = hasActiveSearch
+		? await bookmarkService.countBookmarks(userId)
+		: bookmarks.length;
+
 	return {
-		bookmarks: await bookmarkService.listBookmarks(userId),
+		bookmarks,
+		searchQuery: searchQuery ?? "",
+		hasActiveSearch,
+		totalBookmarks,
 	};
 };
 
